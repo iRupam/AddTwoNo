@@ -1,12 +1,16 @@
 package com.example.addtwono;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private EditText num1;
@@ -27,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (num1.getText().toString().length() == 0){
+                    num1.setText("0");
+                }
+                if (num2.getText().toString().length() == 0){
+                    num2.setText("0");
+                }
                 int number1=Integer.parseInt(num1.getText().toString());
                 int number2=Integer.parseInt(num2.getText().toString());
                 int sum=number1+number2;
@@ -35,5 +45,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mymenu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id=item.getItemId();
+        switch(id)
+        {
+            case R.id.home:
+                Toast.makeText(this,"home clicked",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.first:
+                Toast.makeText(this,"first clicked",Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        return true;
     }
 }
